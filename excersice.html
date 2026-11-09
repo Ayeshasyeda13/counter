@@ -1,0 +1,17 @@
+<script>
+    const food = ['egg', 'apple', 'egg', 'ham', 'bread', 'jam'];
+
+    function removeEgg(food) {
+        const result = [];
+        for (let i = 0; i < food.length; i++) {
+            if (food[i] === 'egg') {
+                continue;
+            }
+            result.push(food[i]);
+        }
+        return result;
+
+
+    }
+    console.log(removeEgg(food))
+</script>

@@ -4,8 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>java</title>
+    <title>javascript</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .subscribe-button {
+            border: none;
+            background-color: black;
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+
+        }
+
+        .is-subscribed {
+            background-color: rgb(245, 245, 245);
+            color: black;
+        }
+
+        .input-cost {
+            font-size: 15px;
+            padding: 10px;
+
+        }
+
+        .calButton {
+            padding: 12px 15px;
+            border: none;
+            background-color: green;
+            color: white;
+            font-size: 15px;
+
+
+
+        }
+    </style>
 </head>
 
 <body>
@@ -23,9 +57,9 @@
 
 
     <!-- counter watch -->
-    <div class="counterbox">
+    <!-- <div class="counterbox"> 
 
-
+     <h1>counter</h1>
         <label id="counterlabel">0</label><br>
 
         <div class="buttoncontainer">
@@ -34,14 +68,262 @@
             <button id="resetbtn" class="buttons">reset</button>
 
         </div>
+    </div> 
+    <script src="./index.js"></script> -->
+
+    <!-- random number generator -->
+    <!-- 
+    <button id="mybutton">Roll</button>
+    <label id="mylabel"> ROLL number</label> -->
+
+
+
+    <!-- 
+    <label>ENTER YOUR AGE: </label><br>
+    <input id="mytext"><br>
+    <button id="mysubmit">Submit</button>
+        <p id="resultelement"></p> -->
+
+    <!-- <input type="checkbox" id="mycheckbox">
+    <label for="mycheckbox"> FOLLOW</label><br><br>
+
+    <input type="radio" name="card" id="visabtn">
+    <label for="visabtn">visa</label><br>
+
+    <input type="radio" name="card" id="paytmbtn">
+    <label for="paytmbtn">Paytm</label><br>
+
+    <input type="radio" name="card" id="paypalbtn">
+    <label for="paypalbtn">PayPal</label><br>
+
+    <input type="radio" name="card" id="upibtn">
+    <label for="upibtn">UPI</label><br><br>
+
+    <button type="submit" id="mysubmit">submit</button>
+
+    <p id="subresult"></p><br>
+    <p id="paymentResult"></p> -->
+
+
+    <!-- 
+   <h1 id="nametext">hello</h1> -->
+
+
+    <p>YouTube subscribe button </p>
+    <button onclick="
+      subscribe();
+     " class="js-subscribe-button subscribe-button">subscribe</button>
+
+    <p> ROCK PAPER Scissors GAME </p>
+    <a href="/game.html">click here</a>
+
+    <p>Amaazon shipping calculator</p>
+    <input placeholder="cost of order" class="js-cost-input input-cost" onkeydown="
+         handleCostEvent(event);
+   ">
+
+    <button onclick="
+   calculateTotal();
+   
+   " class="calButton">calculate</button>
+    <p class="js-total-cost"></p>
+
+
+    <button onclick="
+    headTailGame(this);
+    
+    " class="js-move subscribe-button" value="heads">heads</button>
+    <button onclick="
+    
+    headTailGame(this);
+    
+    " class="js-move subscribe-button" value="tails" subscribe-button>tails</button>
+
+    <p class="js-view"></p>
+
+
+
+
+
+
+    <!-- TOOO DOO LIST -->
+    <h1>todo list</h1>
+    <div class="todo-input-grid">
+        <input placeholder="TODO Name" class="js-todoList name-input">
+
+        <input type="date" class="js-due-Date-input due-date-input" onkeydown="
+
+        handleTODOevent(event);
+        
+        ">
+
+
+        <button onclick="
+        addList()
+    " class="add-todo-btn">Add</button>
     </div>
+    <div class="js-todo-list todo-grid"></div>
+
+
+
+
+<!-- excersice of an arry nd loops 
+ CREATE A FUNCTION REMOVE EGG (FOOD ) THAT TAKES AN ARRY OF STRING AND RETURN AN ARRY WHERE THE ATRING 'EGG'
+IS REMOVED (HINT: loop thru the arry and chck if each string is 'egg' if it is 'egg')use 'continue' to skip it if not egg add it to the result)
+* removeEgg([egg, epple, egg, egg, ham])
+
+-->
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        //   heads tails game 
+        function headTailGame(buttonPressed) {
+
+            let display = buttonPressed.innerText;
+
+            document.querySelector('.js-view')
+                .innerHTML = `you chose: ${display}`;
+            console.log(buttonPressed);
+        }
+        //    function headTailGame(buttonPressed) {
+        //     console.log(buttonPressed.innerText);
+        // }
+
+
+
+        function handleCostEvent(event) {
+
+            if (event.key === 'Enter') {
+                calculateTotal();
+
+            }
+        }
+
+        function calculateTotal() {
+            const inputElement = document.querySelector('.js-cost-input');
+            let cost = Number(inputElement.value);
+
+            if (cost < 40) {
+                cost = cost + 10;
+
+            }
+
+            document.querySelector('.js-total-cost')
+                .innerHTML = ` $${cost} `;
+        }
+
+
+
+        function subscribe() {
+
+            const buttonElement = document.querySelector('.js-subscribe-button');
+
+            if (buttonElement.innerText === 'subscribe') {
+                buttonElement.innerHTML = 'subscribed';
+                buttonElement.classList.add('is-subscribed');
+            } else {
+                buttonElement.innerHTML = 'subscribe';
+                buttonElement.classList.remove('is-subscribed');
+            }
+        }
+
+        // todo list javascript 
+
+        const todoList = [{
+            name: 'make dinner',
+            dueDate: 2026 - 1 - 1
+        }, {
+            name: 'take out garbage',
+            dueDate: 2026 - 1 - 1
+        }];
+        rendorTODOlist();
+
+     function handleTODOevent(event){
+        if(event.key === 'Enter'){
+            addList();
+        }
+        
+
+     }
+        function rendorTODOlist() {
+            let todoListHTML = '';
+            for (let i = 0; i < todoList.length; i++) {
+                const todoObject = todoList[i];
+                /*const name = todoObject.name ;
+                const dueDate = todoObject.dueDate;*/ //destructing 
+                const { name, dueDate } = todoObject;
+                const html = `
+                    <div>${name}</div>
+                    <div>${dueDate}</div>
+                    <button onclick="
+                    todoList.splice(${i},1);
+                    rendorTODOlist();
+                    " 
+                    class="dlt-todo-btn">Delete</button>`;
+
+                todoListHTML += html;
+
+            }
+
+
+            document.querySelector('.js-todo-list')
+                .innerHTML = todoListHTML;
+        }
+
+        function addList() {
+
+            const inputElement = document.querySelector('.js-todoList');
+            const name = inputElement.value;
+
+            const dateInputElement = document.querySelector('.js-due-Date-input');
+
+            const dueDate = dateInputElement.value;
+
+            todoList.push({ name, dueDate });
+
+            console.log(todoList);
+
+            inputElement.value = '';
+
+            rendorTODOlist();
+        }
+
+
+
+
+        // excersice for EGG
+       
+
+    </script>
+
+
+
+
+
+
+
+
+
+    <script src="/index.js"></script>
 </body>
-<script src="./index.js"></script>
+
 
 </html>
